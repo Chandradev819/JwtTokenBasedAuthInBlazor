@@ -37,23 +37,9 @@
 @code {
     Credentials credentials = new Credentials();
     bool loginFailure;
-
-     EditForm loginform { get; set; }
-
+    EditForm loginform { get; set; }
     async Task SubmitCredentials()
     {
-       
-        //using (var httpClient = new HttpClient())
-        //{
-        //    StringContent content = new StringContent(JsonConvert.SerializeObject(credentials), Encoding.UTF8, "application/json");
- 
-        //    using (var response = await httpClient.PostAsync("https://localhost:7105/api/login", content))
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        var result = JsonConvert.DeserializeObject<LoginResult>(apiResponse);
-        //    }
-        //}
-
         var response =  await Http.PostAsJsonAsync("api/login", credentials);
         var result= await response.Content.ReadFromJsonAsync<LoginResult>();
         loginFailure = result?.Token == null;
