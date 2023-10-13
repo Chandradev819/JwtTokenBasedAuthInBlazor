@@ -20,7 +20,7 @@ namespace BlazorApp2.Server.Controllers
         [HttpPost]
         public LoginResult Login(Credentials credentials)
         {
-            var expiry = DateTime.Now.AddMinutes(2);
+            var expiry = DateTime.Now.AddMinutes(1);
             return ValidateCredentials(credentials) ? new LoginResult { Token = GenerateJWT(credentials.Email, expiry), Expiry = expiry } : new LoginResult();
         }
 
